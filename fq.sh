@@ -60,8 +60,9 @@ ConnectionConfig:
 Nodes:
   - PanelType: \"NewV2board\" # Panel type: SSpanel, NewV2board, PMpanel, Proxypanel, V2RaySocks, GoV2Panel, BunPanel
     ApiConfig:
-      ApiHost: \"https://abcd.886617.xyz/\"
-      ApiKey: \"123456asdfghj12312321231231\"
+    # 需要修改处
+      ApiHost: \"******************************************************************************************************/\"
+      ApiKey: \"*******************************************************************************************************\"
       NodeID: $ID
       NodeType: $NoteID # Node type: V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
