@@ -36,12 +36,14 @@ elif [ "$input" == "3" ]; then
     bash <(curl -Ls https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh)
     clear
 
-    # 请求用户输入NodeID
+    # 请求用户输入NodeID、节点类型、ApiHost和ApiKey
     read -p "请输入NodeID: " ID
     echo "节点类型  V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin"
-    read -p "请输入节点类型类型: " NoteID
+    read -p "请输入节点类型: " NoteID
+    read -p "请输入ApiHost(面板地址): " ApiHost
+    read -p "请输入ApiKey(面板通信密钥): " ApiKey
 
-    # 使用用户输入的NodeID替换配置文件中的NodeID
+    # 使用用户输入的信息替换配置文件
     sudo bash -c "cat <<EOF > /etc/XrayR/config.yml
 Log:
   Level: warning # Log level: none, error, warning, info, debug
@@ -60,9 +62,8 @@ ConnectionConfig:
 Nodes:
   - PanelType: \"NewV2board\" # Panel type: SSpanel, NewV2board, PMpanel, Proxypanel, V2RaySocks, GoV2Panel, BunPanel
     ApiConfig:
-    # 需要修改处
-      ApiHost: \"******************************************************************************************************/\"
-      ApiKey: \"*******************************************************************************************************\"
+      ApiHost: \"${ApiHost}\"
+      ApiKey: \"${ApiKey}\"
       NodeID: $ID
       NodeType: $NoteID # Node type: V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -128,6 +129,8 @@ Nodes:
 EOF"
     sudo XrayR restart
     echo "XrayR配置完成，NodeID已设置为$ID"
+    echo "ApiHost已设置为: $ApiHost"
+    echo "ApiKey已设置为: $ApiKey"
 elif [ "$input" == "4" ]; then
     # 检查 Docker 是否已安装
     if command -v docker >/dev/null 2>&1; then
