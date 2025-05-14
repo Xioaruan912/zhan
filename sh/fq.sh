@@ -20,7 +20,7 @@ install_gum() {
             echo "请访问 https://github.com/charmbracelet/gum#installation 手动安装 gum。"
             return 1
         fi
-        
+        q
         echo "正在从 GitHub 下载 gum_${GUM_ARCH}.deb..."
         local GUM_VERSION="0.13.0" # Example version, update as needed
         local GUM_DEB_URL="https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_${GUM_ARCH}.deb"
